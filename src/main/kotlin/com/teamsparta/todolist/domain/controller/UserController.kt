@@ -1,6 +1,8 @@
 package com.teamsparta.todolist.domain.controller
 
+import com.teamsparta.todolist.domain.controller.request.LoginRequest
 import com.teamsparta.todolist.domain.controller.request.SignUpRequest
+import com.teamsparta.todolist.domain.controller.response.LoginResponse
 import com.teamsparta.todolist.domain.controller.response.UserResponse
 import com.teamsparta.todolist.domain.service.UserService
 import com.teamsparta.todolist.domain.service.dto.UserDto
@@ -13,7 +15,15 @@ import org.springframework.web.bind.annotation.RequestBody
 class UserController(
     private val userService: UserService
 ) {
-    @PostMapping("/users/signup")
+
+    @PostMapping("/api/v1/users/login")
+    fun login(@RequestBody loginRequest: LoginRequest):ResponseEntity<LoginResponse> {
+      return ResponseEntity
+          .status(HttpStatus.OK)
+          .body(userService.login(loginRequest))
+    }
+
+    @PostMapping("/api/v1/users/signup")
     fun signup(@RequestBody signUpRequest: SignUpRequest): ResponseEntity<UserResponse> {
         val result = userService.newUser(
             UserDto(
