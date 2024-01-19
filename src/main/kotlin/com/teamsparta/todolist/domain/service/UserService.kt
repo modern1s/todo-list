@@ -1,6 +1,5 @@
 package com.teamsparta.todolist.domain.service
 
-import com.teamsparta.todolist.infra.security.jwt.PasswordEncoderConfig
 import com.teamsparta.todolist.common.exception.InvalidCredentialException
 import com.teamsparta.todolist.common.exception.ModelNotFoundException
 import com.teamsparta.todolist.domain.controller.request.LoginRequest
@@ -9,7 +8,6 @@ import com.teamsparta.todolist.domain.repository.UserRepository
 import com.teamsparta.todolist.domain.repository.model.User
 import com.teamsparta.todolist.domain.service.dto.UserDto
 import com.teamsparta.todolist.infra.security.jwt.JwtPlugin
-import io.jsonwebtoken.Jwt
 import org.springframework.security.crypto.factory.PasswordEncoderFactories
 import org.springframework.security.crypto.password.PasswordEncoder
 

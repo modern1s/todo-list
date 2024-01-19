@@ -1,4 +1,4 @@
-package com.teamsparta.todolist.infra.security.jwt
+package com.teamsparta.todolist.infra.security
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
