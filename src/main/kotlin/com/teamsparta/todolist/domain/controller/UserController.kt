@@ -3,6 +3,7 @@ package com.teamsparta.todolist.domain.controller
 import com.teamsparta.todolist.domain.controller.request.SignUpRequest
 import com.teamsparta.todolist.domain.controller.response.UserResponse
 import com.teamsparta.todolist.domain.service.UserService
+import com.teamsparta.todolist.domain.service.dto.UserDto
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -13,8 +14,19 @@ class UserController(
     private val userService: UserService
 ) {
     @PostMapping("/users/signup")
-    fun signup(@RequestBody @Valid signUpRequest: SignUpRequest): ResponseEntity<UserResponse> {
-        val signUpResponse = userService.newUser(signUpRequest)
-        return  ResponseEntity.status(HttpStatus.CREATED).body(signUpResponse)
+    fun signup(@RequestBody signUpRequest: SignUpRequest): ResponseEntity<UserResponse> {
+        val result = userService.newUser(
+            UserDto(
+                email = signUpRequest.email,
+                password = signUpRequest.password,
+                userName = signUpRequest.userName
+            )
+        )
+        return  ResponseEntity.status(HttpStatus.CREATED).body(
+            UserResponse(
+                email = result.email,
+                userName = result.userName,
+            )
+        )
     }
 }
