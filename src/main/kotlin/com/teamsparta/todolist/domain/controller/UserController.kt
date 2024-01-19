@@ -1,8 +1,7 @@
 package com.teamsparta.todolist.domain.controller
 
-import com.teamsparta.todolist.domain.controller.request.LoginRequest
 import com.teamsparta.todolist.domain.controller.request.SignUpRequest
-import com.teamsparta.todolist.domain.controller.response.SignUpResponse
+import com.teamsparta.todolist.domain.controller.response.UserResponse
 import com.teamsparta.todolist.domain.service.UserService
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
@@ -14,7 +13,7 @@ class UserController(
     private val userService: UserService
 ) {
     @PostMapping("/users/signup")
-    fun signup(@RequestBody @Valid signUpRequest: SignUpRequest): ResponseEntity<SignUpResponse> {
+    fun signup(@RequestBody @Valid signUpRequest: SignUpRequest): ResponseEntity<UserResponse> {
         val signUpResponse = userService.newUser(signUpRequest)
         return  ResponseEntity.status(HttpStatus.CREATED).body(signUpResponse)
     }

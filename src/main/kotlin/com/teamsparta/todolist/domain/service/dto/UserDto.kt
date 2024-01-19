@@ -7,5 +7,4 @@ data class UserDto(
     val email : String,
     val password : String,
     val userName: String,
-    val createdAt : ZonedDateTime
 )
